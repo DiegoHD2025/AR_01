@@ -368,7 +368,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CarPrefab: {fileID: 6378763645007927171, guid: e5b76e4e2953b40899e6eb98c85b5f32, type: 3}
-  Reticle: {fileID: 0}
+  Reticle: {fileID: 139821073}
   DrivingSurfaceManager: {fileID: 1866544834}
   Car: {fileID: 0}
 --- !u!4 &819664724
