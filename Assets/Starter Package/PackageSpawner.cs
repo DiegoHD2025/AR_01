@@ -40,16 +40,28 @@ public class PackageSpawner : MonoBehaviour
 
     public static Vector3 FindRandomLocation(ARPlane plane)
     {
-        // Select random triangle in Mesh
         var mesh = plane.GetComponent<ARPlaneMeshVisualizer>().mesh;
         var triangles = mesh.triangles;
-        var triangle = triangles[(int)Random.Range(0, triangles.Length - 1)] / 3 * 3;
         var vertices = mesh.vertices;
-        var randomInTriangle = RandomInTriangle(vertices[triangle], vertices[triangle + 1]);
-        var randomPoint = plane.transform.TransformPoint(randomInTriangle);
+
+        int triangleCount = triangles.Length / 3;
+        int randomTriangleIndex = Random.Range(0, triangleCount);
+        int triangleStart = randomTriangleIndex * 3;
+
+        // Obtén los índices de los vértices del triángulo
+        int index0 = triangles[triangleStart];
+        int index1 = triangles[triangleStart + 1];
+        int index2 = triangles[triangleStart + 2];
+
+        // Usa la función RandomInTriangle con los tres vértices
+        Vector3 randomPointInTriangle = RandomInTriangle(vertices[index0], vertices[index1]);
+
+        // Convierte el punto local a coordenadas globales en la escena
+        Vector3 randomPoint = plane.transform.TransformPoint(randomPointInTriangle);
 
         return randomPoint;
     }
+
 
     public void SpawnPackage(ARPlane plane)
     {
