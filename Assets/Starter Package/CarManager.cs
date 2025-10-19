@@ -52,6 +52,7 @@ public class CarManager : MonoBehaviour
 
         if (Input.touchCount == 0)
         {
+            Debug.Log("Mouse click detected");
             return false;
         }
 
